@@ -2,9 +2,9 @@
 
 using System.Security.Cryptography;
 
-Console.WriteLine("Módulo 4");
+Console.WriteLine("\t\t-> Módulo 4");
 
-Console.WriteLine("\n-> Converter tipos de dados");
+Console.WriteLine("\nParte 2: Converter tipos de dados");
 #region "Metodo TryParse"
 string value = "102";
 int result = 0;
@@ -32,9 +32,7 @@ else
 //Console.WriteLine($"Dividindo o valor3 pelo valor1, o resultado será: {result3}");
 #endregion
 
-
-Console.WriteLine("\n-> Executar operações em matrizes usando métodos auxiliares em C#");
-
+Console.WriteLine("\nParte 3: Executar operações em matrizes usando métodos auxiliares em C#");
 #region "Métodos Sort, Reverse, Clear, Resize"
 string[] paletas = {"vermelho", "branco", "preto", "azul" };
 
@@ -103,6 +101,41 @@ foreach (string item in items)
 }
 #endregion
 
+#region "Inverter as palavras de uma frase"
+Console.WriteLine("\n-> Desafio de inverter palavras em uma frase");
 
+string palavraFrase = "Oi amigos lindos";
+string[] palavrasSeparadas = palavraFrase.Split(" "); // Separando cada palavra pelo espaço
+Console.WriteLine($"Quantidade de palavras na frase: {palavrasSeparadas.Length}");
 
+string[] novaPalavra = new string[palavrasSeparadas.Length];
+
+for (int i = 0; i < palavrasSeparadas.Length; i++)
+{
+    char[] letras = palavrasSeparadas[i].ToCharArray();
+    Array.Reverse(letras);
+    novaPalavra[i] = new string(letras);
+}
+string resultadoPalavra = string.Join(" ", novaPalavra);
+Console.WriteLine($"Resultado final da frase: {resultadoPalavra}");
+#endregion
+
+#region "Analise de cadeia de caractere de pedidos"
+Console.WriteLine("\n-> Analise de cadeia de caracteres de pedidos");
+string pedidos = "B123,C234,A345,C15,B177,G3003,C235,B179";
+string[] pedidoCada = pedidos.Split(",");
+Array.Sort(pedidoCada);
+for (int i = 0; i < pedidoCada.Length; i++)
+{
+    if (pedidoCada[i].Length != 4)
+    {
+        Console.WriteLine($"{pedidoCada[i]} - Error!");
+    }
+    else
+    {
+        Console.WriteLine($"{pedidoCada[i]}");
+    }
+}
+
+#endregion
 

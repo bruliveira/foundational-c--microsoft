@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using System.Collections.Generic;
 using System.Security.Cryptography;
 
 Console.WriteLine("\t\t-> Módulo 4");
@@ -136,6 +137,118 @@ for (int i = 0; i < pedidoCada.Length; i++)
         Console.WriteLine($"{pedidoCada[i]}");
     }
 }
+
+#endregion
+
+Console.WriteLine("\nParte 4: Formatar dados alfanuméricos");
+#region "Formatação composta"
+string dado1 = "Hello";
+string dado2 = "World";
+string resultadoComposta = string.Format("{0} {1}!", dado1, dado2);
+Console.WriteLine(resultadoComposta);
+#endregion
+
+Console.WriteLine("\nParte 5: Modificar o conteúdo de cadeias de caracteres usando métodos internos");
+#region "Modificar usando metódos auxiliares"
+string message = "(What if) there are (more than) one (set of parentheses)?";
+
+////int openingPosition = message.IndexOf('(');
+////int closingPosition = message.IndexOf(')');
+
+//// LastIndexOf pega a última ocorrência do caractere
+//int openingPosition = message.LastIndexOf('(');
+//openingPosition += 1;
+//int closingPosition = message.LastIndexOf(')');
+
+//Console.WriteLine(openingPosition);
+//Console.WriteLine(closingPosition);
+
+//int length = closingPosition - openingPosition;
+//Console.WriteLine(message.Substring(openingPosition, length));
+
+while (true)
+{
+    int openingPosition = message.IndexOf('(');
+    if (openingPosition == -1) break;
+
+    openingPosition += 1;
+    int closingPosition = message.IndexOf(')');
+    int length = closingPosition - openingPosition;
+    Console.WriteLine(message.Substring(openingPosition, length));
+
+    // Note the overload of the Substring to return only the remaining 
+    // unprocessed message:
+    message = message.Substring(closingPosition + 1);
+}
+
+
+string message1 = "Help (find) the {opening symbols}";
+Console.WriteLine($"\nSearching THIS Message: {message1}");
+char[] openSymbols1 = { '[', '{', '(' };
+int startPosition1 = 6;
+int openingPosition1 = message1.IndexOfAny(openSymbols1);
+Console.WriteLine($"Found WITHOUT using startPosition: {message1.Substring(openingPosition1)}");
+
+openingPosition1 = message1.IndexOfAny(openSymbols1, startPosition1);
+Console.WriteLine($"Found WITH using startPosition {startPosition1}: {message1.Substring(openingPosition1)}");
+
+
+#endregion
+
+#region "Usar os métodos Remove() e Replace() e Remover de cadeia de caractere" 
+Console.WriteLine("\n");
+string data = "12345John Smith          5000  3  ";
+string updatedData = data.Remove(5, 20);
+Console.WriteLine(updatedData);
+
+string message2 = "This--is--ex-amp-le--da-ta";
+message2 = message2.Replace("--", " ");
+message2 = message2.Replace("-", "");
+Console.WriteLine(message2);
+
+
+
+Console.WriteLine("cadeia de caracteres de entrada");
+const string input = "<div><h2>Widgets &trade;</h2><span>5000</span></div>";
+
+string quantity = "";
+string output = "";
+
+// Your work here
+
+// Extract the "quantity"
+const string openSpan = "<span>";
+const string closeSpan = "</span>";
+
+int quantityStart = input.IndexOf(openSpan) + openSpan.Length; // + length of <span> so index at end of <span> tag
+int quantityEnd = input.IndexOf(closeSpan);
+int quantityLength = quantityEnd - quantityStart;
+quantity = input.Substring(quantityStart, quantityLength);
+quantity = $"Quantity: {quantity}";
+
+// Set output to input, replacing the trademark symbol with the registered trademark symbol
+const string tradeSymbol = "&trade;";
+const string regSymbol = "&reg;";
+output = input.Replace(tradeSymbol, regSymbol);
+
+// Remove the opening <div> tag
+const string openDiv = "<div>";
+int divStart = output.IndexOf(openDiv);
+output = output.Remove(divStart, openDiv.Length);
+
+// Remove the closing </div> tag and add "Output:" to the beginning
+const string closeDiv = "</div>";
+int divCloseStart = output.IndexOf(closeDiv);
+output = "Output: " + output.Remove(divCloseStart, closeDiv.Length);
+
+Console.WriteLine(quantity);
+Console.WriteLine(output);
+
+#endregion
+
+Console.WriteLine("\nParte 6: Projeto guiado – Trabalhar com os dados variáveis em C#");
+#region
+
 
 #endregion
 

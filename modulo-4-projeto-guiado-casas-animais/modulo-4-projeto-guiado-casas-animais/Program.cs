@@ -2,6 +2,7 @@
 using static System.Net.Mime.MediaTypeNames;
 
 Console.WriteLine("-> Novas casas para cães e gatos mecessitados");
+#region "variaveis"
 // O array ourAnimals irá armazenar o seguinte
 string animalSpecies = "";
 string animalID = "";
@@ -10,6 +11,7 @@ string animalPhysicalDescription = "";
 string animalPersonalityDescription = "";
 string animalNickname = "";
 string suggestedDonation = "";
+string[] searchingIcons = { ". ", ".. ", "..." };
 
 // Variáveis ​​que suportam entrada de dados
 int maxPets = 8;
@@ -18,7 +20,9 @@ string menuSelection = "";
 
 // Matriz usada para armazenar dados de tempo de execução, não há dados persistentes
 string[,] ourAnimals = new string[maxPets, 7];
+#endregion
 
+#region "Conteudo animais"
 // Criar dados de amostra entradas da matriz ourAnimals
 for (int i = 0; i < maxPets; i++)
 {
@@ -81,6 +85,8 @@ for (int i = 0; i < maxPets; i++)
     ourAnimals[i, 5] = "Personality: " + animalPersonalityDescription;
     ourAnimals[i, 6] = "Suggested Donation: " + suggestedDonation;
 }
+#endregion
+
 string op = "";
 do
 {
